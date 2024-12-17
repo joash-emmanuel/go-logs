@@ -96,13 +96,13 @@ func register(c *gin.Context) {
 	query := `insert into attendeesinfo (fitst_name, second_name, age, email, occupation) values (?,?,?,?,?)`
 	start := time.Now()
 	_, err := db.Exec(query, userdata.First_name, userdata.Second_name, userdata.Age, userdata.Email, userdata.Occupation)
-	elapsed := time.Since(start)
+	elapsed := time.Since(start).Seconds() //the output is usually in nanoseconds. I have done the conversion to seconds
 	if err != nil {
-		logger.Error("ERROR Incurred", "error", err, "Execution time", elapsed)
+		logger.Error("ERROR Incurred", "error", err, "Execution time in seconds", elapsed)
 		panic(err)
 	}
 
 	c.IndentedJSON(http.StatusOK, userdata)
-	logger.Info("user created", "email", userdata.Email, "Execution time", elapsed)
+	logger.Info("user created", "email", userdata.Email, "Execution time in seconds", elapsed)
 
 }
