@@ -34,7 +34,7 @@ func dbconnection() {
 
 	cfg := mysql.Config{
 		User:   "otieno",
-		Passwd: "emmanuel.43",
+		Passwd: "tester@123",
 		Net:    "tcp",
 		Addr:   "127.0.0.1:3306",
 		DBName: "Booking",
